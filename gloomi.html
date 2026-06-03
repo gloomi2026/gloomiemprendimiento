@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gloomi | Energía Natural y Saludable</title>
+    <style>
+        /* Variables de colores basados en la esencia de Gloomi */
+        :root {
+            --rosa-pastel: #fbc2eb;
+            --morado-pastel: #a6c1ee;
+            --fucsia-vibrante: #d53369;
+            --morado-oscuro: #8e2de2;
+            --fondo-claro: #faf8f5;
+            --texto-principal: #4a4a4a;
+            --verde-whatsapp: #25D366;
+        }
+
+        /* Estilos Globales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--fondo-claro);
+            color: var(--texto-principal);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Menú de Navegación Dinámico */
+        header {
+            background: linear-gradient(135deg, var(--rosa-pastel) 0%, var(--morado-pastel) 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .menu li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        .menu li a:hover::before {
+            transform: scale(1);
+        }
+
+        .menu li a:hover {
+            color: var(--morado-oscuro);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Sección Hero */
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: radial-gradient(circle at center, rgba(253,235,243,1) 0%, rgba(250,248,245,1) 100%);
+        }
+
+        .hero h1 {
+            color: var(--fucsia-vibrante);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: auto;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Sección de Productos */
+        .productos-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 4rem 2rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .producto-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            width: 340px;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .producto-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--rosa-pastel);
+            box-shadow: 0 15px 40px rgba(166, 193, 238, 0.4);
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--morado-oscuro);
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+        }
+
+        .icono-producto {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: flotar 3s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .producto-card h3 {
+            color: var(--morado-oscuro);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .producto-card p.intro {
+            color: #777;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        /* Estilo para los precios */
+        .precio {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--fucsia-vibrante);
+            margin-bottom: 1.5rem;
+            background: rgba(213, 51, 105, 0.1);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            align-self: center;
+        }
+
+        .btn-comprar {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(to right, var(--fucsia-vibrante), var(--morado-oscuro));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: opacity 0.3s, transform 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-comprar:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        /* Sección: Ingredientes Peruanos */
+        .ingredientes-cta {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, rgba(251, 194, 235, 0.3) 0%, rgba(166, 193, 238, 0.3) 100%);
+            margin: 2rem auto 4rem auto;
+            border-radius: 30px;
+            max-width: 1000px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 2px dashed var(--rosa-pastel);
+        }
+
+        .ingredientes-cta h2 {
+            color: var(--fucsia-vibrante);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .ingredientes-cta p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 750px;
+            margin: 0 auto 2.5rem auto;
+            line-height: 1.6;
+        }
+
+        .btn-descubrir {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--morado-oscuro);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(142, 45, 226, 0.3);
+        }
+
+        .btn-descubrir:hover {
+            background: var(--fucsia-vibrante);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(213, 51, 105, 0.4);
+        }
+
+        /* Estilos del Modal */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 25px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            animation: modalFadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes modalFadeIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--morado-oscuro);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .modal-content h2 {
+            color: var(--fucsia-vibrante);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .modal-content p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Footer / Sección de Contacto con WhatsApp */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem 2rem 2rem;
+            background-color: var(--morado-oscuro);
+            color: white;
+            margin-top: 2rem;
+        }
+
+        footer h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        footer p.contacto-texto {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2.5rem;
+            background-color: var(--verde-whatsapp);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            margin-bottom: 3rem;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-5px);
+            background-color: #1ebe5d;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">GLOOMI</a>
+            <ul class="menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Nuestros Productos</a></li>
+                <li><a href="#ingredientes">Ingredientes Peruanos</a></li>
+                <li><a href="#contacto">Contáctanos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>El equilibrio perfecto entre energía y sabor</h1>
+        <p>Descubre nuestra línea de gomitas dulces y bebidas energéticas saludables. Creadas con ingredientes naturales y las frutas más nutritivas del Perú para darte ese impulso extra sin perder el estilo minimalista.</p>
+    </section>
+
+    <section id="productos" class="productos-container">
+        
+        <div class="producto-card">
+            <div class="icono-producto">🧸</div>
+            <h3>Gomitas Gloomi</h3>
+            <p class="intro">Dulces, masticables y deliciosas. Con la forma icónica de nuestro osito.</p>
+            <div class="precio">S/ 5.00</div>
+            <button class="btn-comprar" onclick="abrirModal('Gomitas Gloomi', 'El antojo perfecto, ahora con el poder de nuestra biodiversidad. Las Gomitas Dulces Gloomi transforman las superfrutas peruanas en bocados suaves, dulces y masticables, repletos de antioxidantes y vitaminas para revitalizar tu cuerpo. Elaboradas con sabores 100% naturales y totalmente libres de gluten, son la dosis de vitalidad ideal para acompañarte en tu día a día. ¡Un snack saludable, vibrante y delicioso para recargar tu energía sin culpas!')">Ver Detalles</button>
+        </div>
+
+        <div class="producto-card">
+            <div class="badge">NUEVO</div>
+            <div class="icono-producto">🍹</div>
+            <h3>Gloomi Energy</h3>
+            <p class="intro">Bebida energética en botella de vidrio. El poder revitalizante de nuestras superfrutas.</p>
+            <div class="precio">S/ 10.00</div>
+            <button class="btn-comprar" onclick="abrirModal('Gloomi Energy', 'Refresca tu día con la energía líquida de nuestra tierra. La bebida Gloomi fusiona el poder revitalizante de la lúcuma, la explosión de vitamina C del camu camu y los potentes antioxidantes del aguaje en un solo trago vibrante. Un impulso natural, 100% peruano, saludable y delicioso que nutre tu cuerpo mientras te mantiene en movimiento. ¡La frescura y vitalidad de nuestras superfrutas, listas para beber y recargarte sin culpas!')">Ver Detalles</button>
+        </div>
+
+    </section>
+
+    <section id="ingredientes" class="ingredientes-cta">
+        <h2>¿Te gustaría conocer el secreto de nuestra energía? 🌱</h2>
+        <p>En Gloomi estamos orgullosos de nuestra tierra. Utilizamos únicamente los mejores insumos naturales para brindarte un sabor inigualable y verdaderos beneficios para tu salud. ¿Quieres saber más sobre los superalimentos que hacen mágicos a nuestros productos?</p>
+        <a href="https://sites.peru.info/es-pe/superfoods/super-frutas" target="_blank" class="btn-descubrir">Descubrir las Superfrutas Peruanas</a>
+    </section>
+
+    <div id="productoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="cerrarModal()">&times;</span>
+            <h2 id="modal-title">Título del Producto</h2>
+            <p id="modal-desc">Descripción detallada del producto...</p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE CONTACTO Y WHATSAPP -->
+    <footer id="contacto">
+        <h2>¿Listo para recargar tu energía?</h2>
+        <p class="contacto-texto">Haz tu pedido ahora mismo o escríbenos si tienes alguna consulta. ¡Estamos listos para atenderte!</p>
+        
+        <!-- Enlace a WhatsApp con número y mensaje predeterminado -->
+        <a href="https://wa.me/51900569164?text=Hola%20Gloomi!%20%F0%9F%90%BB%20Me%20gustar%C3%ADa%20hacer%20un%20pedido%20de%20sus%20productos." target="_blank" class="btn-whatsapp">
+            💬 Escríbenos al WhatsApp
+        </a>
+
+        <div class="footer-bottom">
+            <p>GLOOMI | Hecho en Perú | Saludable y Delicioso</p>
+            <p>&copy; 2026 Gloomi. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para el menú
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId !== "#") {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Funciones para el Modal de Ver Detalles
+        function abrirModal(titulo, descripcion) {
+            document.getElementById('modal-title').innerText = titulo;
+            document.getElementById('modal-desc').innerText = descripcion;
+            document.getElementById('productoModal').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('productoModal').style.display = 'none';
+        }
+
+        // Cerrar el modal si se hace clic fuera del contenido de la caja
+        window.onclick = function(event) {
+            var modal = document.getElementById('productoModal');
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        }
+    </script>
+</body>
+</html>
